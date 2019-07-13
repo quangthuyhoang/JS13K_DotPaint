@@ -4,8 +4,8 @@ Random generated drawing with colors which the player must copy within a time li
 [Need random shape generator - based on some mathematical formula]
 [Need random color generator]
 [Need ability for player to select color]
-[Need ability for player to put down dots based on location]
-[Need to create a pixel grid canvas]
+[Need ability for player to put down dots based on location] - done
+[Need to create a pixel grid canvas] - done
 [Need countdown clock]
 [Need fractal generating formula]
 

@@ -41,15 +41,18 @@ function getKeyAndMove(e){
       moveDown();
       updateInd(state);
       break;				
-    case 81: // press q
-      dotCreator('div');
+      case 81: // press q
+      marker();
       break;
     case 84: // pres t
       grid([40,50])
       state.gamestart = true;
       break;
-    case 192:
-      initOrigin();
+    case 87: // pres w
+      eraser();
+      break;
+    case 192: // `
+      marker(state);
       break;
   }
 }
@@ -94,21 +97,18 @@ function dotCreator(element) {
 }
 
 function moveLeft(){
-  objImage.style.left=parseInt(objImage.style.left)-6 +'px';
   archivePos();
   if(state.y - 1 > 0) {
     state.y = state.y - 1;
   }
 }
 function moveUp(){
-  objImage.style.top=parseInt(objImage.style.top)-5 +'px';
   archivePos();
   if(state.x - 1 > 0) {
     state.x = state.x - 1;
   }
 }
 function moveRight(){
-  objImage.style.left=parseInt(objImage.style.left)+6 +'px';
   archivePos();
   if(state.y + 1 <= state.yLen) {
     console.log(state.y, state.y - 1, state.yLen)
@@ -116,7 +116,6 @@ function moveRight(){
   }
 }
 function moveDown(){
-  objImage.style.top=parseInt(objImage.style.top)+5 +'px';
   archivePos();
   if(state.x + 1 <= state.xLen) {
     state.x = state.x + 1;
@@ -124,7 +123,7 @@ function moveDown(){
 }
   window.onload=init;
 
-function initOrigin() {
+function marker() {
   if(!state.gamestart) {
     return;
   }
@@ -132,14 +131,18 @@ function initOrigin() {
   updateIndicatorPosition(state, 'start');
 }
 
+function eraser() {
+  currPosition = dotElement(2,state.x, state.y);
+  currPosition.classList.remove('red-mark');
+}
+
 function updateIndicatorPosition(state, move){
-  console.log('state', state)
   let currPosition; 
   let newPosition;
   switch(move) {
     case 'start': {
-      currPosition= document.getElementById(`grid-2-${state.x}-${state.y}`);
-      currPosition.style.backgroundColor = 'red';
+      currPosition = dotElement(2,state.x, state.y);
+      currPosition.classList.add('red-mark');
       break;
     }
   }
@@ -147,16 +150,23 @@ function updateIndicatorPosition(state, move){
 
 
 function updateInd(stateObj){
-  console.log(stateObj.x, stateObj.y)
-  console.log(stateObj.old_x, stateObj.old_y)
-  let oldPos = document.getElementById(`grid-2-${stateObj.old_x}-${stateObj.old_y}`);
-  let newPos = document.getElementById(`grid-2-${stateObj.x}-${stateObj.y}`);
+ let oldPos = dotElement(2, stateObj.old_x, stateObj.old_y);
+let newPos = dotElement(2, stateObj.x, stateObj.y);
 
-  oldPos.style.backgroundColor = 'white';
-  newPos.style.backgroundColor = 'red';
+  // oldPos.style.backgroundColor = 'white';
+  oldPos.classList.remove('indicator');
+  // removes indicator class
+  // newPos.style.backgroundColor = 'red';
+  newPos.classList.add('indicator');
+  // add indicator class
 };
 
 function archivePos(){
   state.old_y = state.y
   state.old_x = state.x
 }
+
+
+function dotElement(grid_no, x, y) {
+  return document.getElementById(`grid-${grid_no}-${x}-${y}`);
+} 

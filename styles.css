@@ -27,3 +27,11 @@ body {
   width: 100%;
   
 }
+
+.red-mark {
+  background-color: red;
+}
+
+.indicator {
+  background-color: blue;
+}
