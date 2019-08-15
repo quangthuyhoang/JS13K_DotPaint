@@ -1,0 +1,15 @@
+
+
+1) Play Area
+	- 1 Big Area or 4 areas
+	- Hero (Blue Block)
+	- Bad Enemies (Red Block)
+	- Rectangular obstacles
+2) Score/Stats/Items/Top Thingy
+	- Health
+	- 2 Items (Maybe)
+	- Timer
+	- Floor of Floor count
+	- Floor Tracking( left )
+
+
